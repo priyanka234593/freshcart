@@ -5,6 +5,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import NotFound from './pages/NotFound/NotFound';
 import AuthContextProvider from './context/Auth/Auth';
+import Home from './pages/Home/Home';
 
 function App() {
   const router = createBrowserRouter([
@@ -12,6 +13,7 @@ function App() {
       path: '',
       element: <MainLayout />,
       children: [
+        { index: true, element: <Home /> },
         { path: 'login', element: <Login /> },
         { path: 'register', element: <Register /> },
         { path: '*', element: <NotFound /> },
