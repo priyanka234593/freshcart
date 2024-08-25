@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authContext } from '../../context/Auth/Auth';
+import { Helmet } from 'react-helmet';
 
 export default function Login() {
   const [err, setErr] = useState(null);
@@ -57,6 +58,10 @@ export default function Login() {
 
   return (
     <>
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
+
       <form
         method="post"
         className="max-w-md mx-auto"

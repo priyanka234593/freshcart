@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { renderStars } from '../../components/ProductItem/ProductItem.jsx';
 import Slider from 'react-slick/lib/slider.js';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 export default function ProductDetails() {
   const [ProdDetails, setProdDetails] = useState([]);
@@ -34,6 +35,10 @@ export default function ProductDetails() {
 
   return (
     <>
+      <Helmet>
+        <title>{ProdDetails.title}</title>
+      </Helmet>
+
       <div className="container mt-10 dark:bg-gray-800">
         <div className="flex flex-col md:flex-row md:space-x-8">
           <div className="w-full md:w-1/3 mb-8 md:mb-0">

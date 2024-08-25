@@ -1,3 +1,13 @@
+import { Helmet } from 'react-helmet';
+
 export default function NotFound() {
-  return <div>NotFound</div>;
+  return (
+    <>
+      <Helmet>
+        <title>Not Found</title>
+      </Helmet>
+
+      <div>NotFound</div>
+    </>
+  );
 }
