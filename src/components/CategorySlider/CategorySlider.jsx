@@ -52,7 +52,7 @@ export default function CategorySlider() {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <div className="container my-20">
+    <div className="container my-10">
       <h3 className="text-3xl font-medium mb-5">Popular Categories</h3>
       <Slider {...settings}>
         {categories.map((category) => (
