@@ -7,14 +7,9 @@ import NotFound from './pages/NotFound/NotFound';
 import AuthContextProvider from './context/Auth/Auth';
 import Home from './pages/Home/Home';
 import ProtectedRoute from './pages/ProtectedRoute/ProtectedRoute';
-<<<<<<< HEAD
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import Cart from './pages/Cart/Cart';
 import CartContextProvider from './context/Cart/Cart';
-||||||| 41aa879
-=======
-import ProductDetails from './pages/ProductDetails/ProductDetails';
->>>>>>> dev
 
 function App() {
   const router = createBrowserRouter([
@@ -62,7 +57,6 @@ function App() {
             </ProtectedRoute>
           ),
         },
->>>>>>> dev
       ],
     },
   ]);

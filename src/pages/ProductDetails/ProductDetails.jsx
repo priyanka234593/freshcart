@@ -129,8 +129,11 @@ import { renderStars } from '../../components/ProductItem/ProductItem.jsx';
 import Slider from 'react-slick/lib/slider.js';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { cartContext } from '../../context/Cart/Cart.jsx';
 
 export default function ProductDetails() {
+  const { addProduct } = useContext(cartContext);
+
   const [ProdDetails, setProdDetails] = useState([]);
 
   const settings = {
@@ -184,7 +187,10 @@ export default function ProductDetails() {
             </div>
 
             <div className="flex mt-4 space-x-4">
-              <button className="w-1/2 bg-green-700 hover:bg-green-800 dark:bg-green-600 text-white py-2 px-4 rounded-lg font-bold dark:hover:bg-green-700">
+              <button
+                onClick={() => addProduct(product._id)}
+                className="w-1/2 bg-green-700 hover:bg-green-800 dark:bg-green-600 text-white py-2 px-4 rounded-lg font-bold dark:hover:bg-green-700"
+              >
                 Add to cart
               </button>
               <button className="w-1/2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-lg font-bold hover:bg-gray-300 dark:hover:bg-gray-600">
