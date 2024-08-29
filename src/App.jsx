@@ -10,6 +10,7 @@ import ProtectedRoute from './pages/ProtectedRoute/ProtectedRoute';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import Cart from './pages/Cart/Cart';
 import CartContextProvider from './context/Cart/Cart';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const router = createBrowserRouter([
@@ -60,6 +61,7 @@ function App() {
   return (
     <AuthContextProvider>
       <CartContextProvider>
+        <Toaster />
         <RouterProvider router={router} />
       </CartContextProvider>
     </AuthContextProvider>
