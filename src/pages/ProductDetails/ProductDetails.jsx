@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { renderStars } from '../../components/ProductItem/ProductItem.jsx';
 import Slider from 'react-slick/lib/slider.js';
 import { useParams } from 'react-router-dom';
@@ -23,7 +23,6 @@ export default function ProductDetails() {
   };
 
   const { id } = useParams();
-  console.log(id);
 
   useEffect(() => {
     axios
@@ -61,9 +60,10 @@ export default function ProductDetails() {
               </Slider>
             </div>
 
+            {console.log(ProdDetails)}
             <div className="flex mt-4 space-x-4">
               <button
-                onClick={() => addProduct(product._id)}
+                onClick={() => addProduct(ProdDetails.id)}
                 className="w-1/2 bg-green-700 hover:bg-green-800 dark:bg-green-600 text-white py-2 px-4 rounded-lg font-bold dark:hover:bg-green-700"
               >
                 Add to cart
