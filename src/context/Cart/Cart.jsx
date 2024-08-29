@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createContext, useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 
 export const cartContext = createContext(null);
 
@@ -13,12 +14,13 @@ export default function CartContextProvider(props) {
       method: 'get',
       url: 'https://ecommerce.routemisr.com/api/v1/cart',
       headers: headers,
-      // data: '',
     };
 
     return axios(config)
       .then((response) => response.data.data.products)
-      .catch((error) => error);
+      .catch((error) => {
+        throw error;
+      });
   }
 
   function addProduct(id) {
@@ -31,24 +33,40 @@ export default function CartContextProvider(props) {
       data: data,
     };
 
-    return axios(config)
-      .then((response) => response.data)
-      .catch((error) => error);
+    return toast.promise(
+      axios(config)
+        .then((response) => response.data)
+        .catch((error) => {
+          throw error;
+        }),
+      {
+        loading: 'Adding product...',
+        success: 'Product added successfully!',
+        error: 'Error adding product',
+      }
+    );
   }
 
-  // TODO See what is the problem with this function
   function deleteProduct(id) {
     let config = {
       method: 'delete',
       url: `https://ecommerce.routemisr.com/api/v1/cart/${id}`,
       headers: headers,
-      // data: '',
     };
 
-    axios
-      .request(config)
-      .then((response) => response.data)
-      .catch((error) => error);
+    return toast.promise(
+      axios
+        .request(config)
+        .then((response) => response.data)
+        .catch((error) => {
+          throw error;
+        }),
+      {
+        loading: 'Deleting product...',
+        success: 'Product deleted successfully!',
+        error: 'Error deleting product',
+      }
+    );
   }
 
   function updateProductQuantity(id, quantity) {
@@ -61,9 +79,18 @@ export default function CartContextProvider(props) {
       data: data,
     };
 
-    axios(config)
-      .then((response) => response.data)
-      .catch((error) => error);
+    return toast.promise(
+      axios(config)
+        .then((response) => response.data)
+        .catch((error) => {
+          throw error;
+        }),
+      {
+        loading: 'Updating product quantity...',
+        success: 'Product quantity updated successfully!',
+        error: 'Error updating product quantity',
+      }
+    );
   }
 
   return (
