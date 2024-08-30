@@ -1,6 +1,8 @@
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Slider from 'react-slick';
+import Spinner from '../Spinner/Spinner';
 
 export default function CategorySlider() {
   const settings = {
@@ -41,42 +43,52 @@ export default function CategorySlider() {
     ],
   };
 
-  const [categories, setCategories] = useState([]);
+  const { data } = useQuery({
+    queryKey: ['category'],
+    queryFn: getCategories,
+    select: (data) => data.data.data,
+  });
+
+  function getCategories() {
+    return axios.get('https://ecommerce.routemisr.com/api/v1/categories');
+  }
 
   useEffect(() => {
-    axios
-      .get('https://ecommerce.routemisr.com/api/v1/categories')
-      .then((res) => {
-        setCategories(res.data.data);
-      })
-      .catch((err) => console.log(err));
+    getCategories();
   }, []);
+
   return (
     <div className="container my-10">
       <h3 className="text-3xl font-medium mb-5">Popular Categories</h3>
-      <Slider {...settings}>
-        {categories.map((category) => (
-          <div
-            key={category._id}
-            className="rounded-lg px-4 dark:bg-gray-800 dark:border-gray-700"
-          >
-            <a href="#">
-              <img
-                className="rounded-lg object-cover object-top w-full h-80"
-                src={category.image}
-                alt={category.name}
-              />
-            </a>
-            <div className="text-center">
-              <a href="#">
-                <h3 className="text-gray-900 mt-2 overflow-hidden text-ellipsis whitespace-nowrap font-semibold text-xl tracking-tight dark:text-white">
-                  {category.name}
-                </h3>
-              </a>
-            </div>
-          </div>
-        ))}
-      </Slider>
+      {data ? (
+        <>
+          <Slider {...settings}>
+            {data.map((category) => (
+              <div
+                key={category._id}
+                className="rounded-lg px-4 dark:bg-gray-800 dark:border-gray-700"
+              >
+                <a href="#">
+                  <img
+                    className="rounded-lg object-cover object-top w-full h-80"
+                    src={category.image}
+                    alt={category.name}
+                  />
+                </a>
+                <div className="text-center">
+                  <a href="#">
+                    <h3 className="text-gray-900 mt-2 overflow-hidden text-ellipsis whitespace-nowrap font-semibold text-xl tracking-tight dark:text-white">
+                      {category.name}
+                    </h3>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </Slider>
+        </>
+      ) : (
+        <Spinner />
+      )}
     </div>
   );
 }

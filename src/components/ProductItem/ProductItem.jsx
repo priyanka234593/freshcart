@@ -27,7 +27,7 @@ export default function ProductItem({ product }) {
 
   return (
     <div className="w-full lg:md:w-1/4 md:w-1/3 sm:w-1/2 mx-auto p-3">
-      <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
+      <div className="bg-white mx-auto shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
         <Link to={`product/${product._id}`}>
           <img
             className="rounded-t-lg"
