@@ -13,6 +13,9 @@ import CartContextProvider from './context/Cart/Cart';
 import { Toaster } from 'react-hot-toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
+import ResetPassword from './pages/ResetPassword/ResetPassword';
+import VerifyCode from './pages/VerifyCode/VerifyCode';
 
 function App() {
   const queryClient = new QueryClient();
@@ -32,7 +35,15 @@ function App() {
         },
         { path: 'login', element: <Login /> },
         { path: 'register', element: <Register /> },
-        { path: '*', element: <ProductDetails /> },
+        {
+          path: 'forgotPassword',
+          element: <ForgotPassword />,
+        },
+        { path: 'forgotPassword/verifyCode', element: <VerifyCode /> },
+        {
+          path: 'forgotPassword/verifyCode/resetPassword',
+          element: <ResetPassword />,
+        },
         {
           path: 'product/:id',
           element: (
@@ -50,15 +61,6 @@ function App() {
           ),
         },
         { path: '*', element: <NotFound /> },
-        { path: '*', element: <ProductDetails /> },
-        {
-          path: 'product/:id',
-          element: (
-            <ProtectedRoute>
-              <ProductDetails />
-            </ProtectedRoute>
-          ),
-        },
       ],
     },
   ]);
@@ -67,7 +69,7 @@ function App() {
       <CartContextProvider>
         <QueryClientProvider client={queryClient}>
           <Toaster />
-          <ReactQueryDevtools initialIsOpen={false} />
+          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
           <RouterProvider router={router} />
         </QueryClientProvider>
       </CartContextProvider>

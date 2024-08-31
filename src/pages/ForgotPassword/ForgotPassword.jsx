@@ -1,15 +1,15 @@
 import { useFormik } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
-import { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { authContext } from '../../context/Auth/Auth';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import toast from 'react-hot-toast';
 
-export default function Login() {
+export default function ForgotPassword() {
   const [err, setErr] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { setUserToken } = useContext(authContext);
+  // const { setUserToken } = useContext(authContext);
 
   const buttonProps = {
     type: 'submit',
@@ -19,20 +19,22 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  function handleLogin(data) {
+  function handleForgotPassword(data) {
     setIsLoading(true);
+
     axios
-      .post('https://ecommerce.routemisr.com/api/v1/auth/signin', data)
-      .then((data) => {
-        setUserToken(data.data.token);
-        localStorage.setItem('authToken', data.data.token);
+      .post('https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords', data)
+      .then((res) => {
         setErr(null);
+        toast.success('An email has been sent to you!');
         setIsLoading(false);
-        if (data.data.message === 'success') {
-          navigate('/');
+        if (res.data.statusMsg === 'success') {
+          localStorage.setItem('email', data.email);
+          navigate('verifyCode');
         }
       })
       .catch((err) => {
+        console.log(err);
         setIsLoading(false);
         setErr(err.response.data.message);
       });
@@ -42,23 +44,20 @@ export default function Login() {
     email: Yup.string()
       .required('Email is required')
       .email('Email is not valid'),
-
-    password: Yup.string().required('Password is required'),
   });
 
   const formik = useFormik({
     initialValues: {
       email: '',
-      password: '',
     },
-    onSubmit: handleLogin,
+    onSubmit: handleForgotPassword,
     validationSchema: validate,
   });
 
   return (
     <>
       <Helmet>
-        <title>Login</title>
+        <title>Fogot Password</title>
       </Helmet>
 
       <form
@@ -67,9 +66,10 @@ export default function Login() {
         onSubmit={formik.handleSubmit}
       >
         <h1 className="text-2xl text-gray-500 mb-5 mt-8 font-bold">
-          Login Now
+          Enter Your Email:
         </h1>
         {err && <div className="bg-red-300 py-1 mb-4 font-light">{err}</div>}
+
         <div className="relative z-0 w-full mb-5 group">
           <input
             type="email"
@@ -94,43 +94,13 @@ export default function Login() {
             </span>
           )}
         </div>
-        <div className="relative z-0 w-full group">
-          <input
-            type="password"
-            name="password"
-            id="password"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.password}
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
-            placeholder=" "
-            // required
-          />
-          <label
-            htmlFor="password"
-            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-600 peer-focus:dark:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Password
-          </label>
-          {formik.errors.password && formik.touched.password && (
-            <span className="text-red-600 font-light text-sm">
-              {formik.errors.password}
-            </span>
-          )}
-        </div>
-        <Link
-          to="/forgotPassword"
-          className="text-green-800 text-sm underline block my-3"
-        >
-          Forgot password?
-        </Link>
 
         {isLoading ? (
           <button {...buttonProps} disabled>
             Loading...
           </button>
         ) : (
-          <button {...buttonProps}>Login</button>
+          <button {...buttonProps}>Reset Password</button>
         )}
       </form>
     </>
