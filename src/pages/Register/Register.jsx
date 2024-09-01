@@ -5,6 +5,7 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authContext } from '../../context/Auth/Auth';
 import { Helmet } from 'react-helmet';
+import toast from 'react-hot-toast';
 
 export default function Register() {
   const [err, setErr] = useState(null);
@@ -25,6 +26,7 @@ export default function Register() {
       .post('https://ecommerce.routemisr.com/api/v1/auth/signup', data)
       .then((res) => {
         setErr(null);
+        toast.success('Account created successfully');
         setUserToken(data.data.token);
         localStorage.setItem('authToken', data.data.token);
         setIsLoading(false);
@@ -33,50 +35,11 @@ export default function Register() {
         }
       })
       .catch((err) => {
+        toast.error('Please try again');
         setIsLoading(false);
         setErr(err.response.data.message);
       });
   }
-
-  // function validateInputs(data) {
-  //   const errors = {};
-
-  //   const nameRegex = /^[A-Z][a-z]{2,}$/;
-  //   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-  //   const phoneRegex = /^01[0-2|5]{1}[0-9]{8}$/;
-
-  //   if (data.name === "") {
-  //     errors.name = "Name is required";
-  //   } else if (!nameRegex.test(data.name)) {
-  //     errors.name = "Name must start with a capital letter";
-  //   }
-
-  //   if (data.email === "") {
-  //     errors.email = "Email is required";
-  //   } else if (!emailRegex.test(data.email)) {
-  //     errors.email = "Email is not valid";
-  //   }
-
-  //   if (data.password === "") {
-  //     errors.password = "Password is required";
-  //   }
-
-  //   if (data.rePassword === "") {
-  //     errors.rePassword = "Confirm password is required";
-  //   } else if (data.password !== data.rePassword) {
-  //     errors.rePassword = "Passwords do not match";
-  //   }
-
-  //   if (data.phone === "") {
-  //     errors.phone = "Phone number is required";
-  //   } else if (!phoneRegex.test(data.phone)) {
-  //     errors.phone = "Phone number is not valid";
-  //   }
-
-  //   console.log(formik.errors);
-  //   console.log(formik.touched);
-  //   return errors;
-  // }
 
   const validate = Yup.object({
     name: Yup.string()
