@@ -16,6 +16,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
 import VerifyCode from './pages/VerifyCode/VerifyCode';
+import Checkout from './pages/Checkout/Checkout';
 
 function App() {
   const queryClient = new QueryClient();
@@ -49,6 +50,14 @@ function App() {
           element: (
             <ProtectedRoute>
               <ProductDetails />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: '/checkout/:id',
+          element: (
+            <ProtectedRoute>
+              <Checkout />
             </ProtectedRoute>
           ),
         },

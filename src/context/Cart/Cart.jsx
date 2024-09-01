@@ -17,7 +17,7 @@ export default function CartContextProvider(props) {
     };
 
     return axios(config)
-      .then((response) => response.data.data.products)
+      .then((response) => response.data.data)
       .catch((error) => {
         throw error;
       });

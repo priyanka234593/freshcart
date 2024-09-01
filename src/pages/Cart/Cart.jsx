@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { cartContext } from '../../context/Cart/Cart';
+import { Link } from 'react-router-dom';
 
 export default function Cart() {
   const { getProducts, deleteProduct, updateProductQuantity } =
     useContext(cartContext);
 
-  const [products, setProducts] = useState([]);
+  const [data, setData] = useState(null);
 
   const handleDeleteProduct = async (id) => {
     await deleteProduct(id);
@@ -18,9 +19,9 @@ export default function Cart() {
   };
 
   async function main() {
-    const products = await getProducts();
-    console.log(`Products Updated:`, products.length);
-    setProducts(products);
+    const data = await getProducts();
+    // console.log(data);
+    setData(data);
   }
 
   useEffect(() => {
@@ -28,8 +29,8 @@ export default function Cart() {
   }, []);
 
   return (
-    <div className="container mt-10">
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div className="container mt-10 flex flex-wrap">
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -51,7 +52,7 @@ export default function Cart() {
             </tr>
           </thead>
           <tbody>
-            {products?.map((product) => (
+            {data?.products?.map((product) => (
               <tr
                 key={product._id}
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -135,7 +136,7 @@ export default function Cart() {
                   </div>
                 </td>
                 <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                  ${product.price}
+                  ${product.price * product.count}
                 </td>
                 <td className="px-6 py-4">
                   <button
@@ -150,79 +151,26 @@ export default function Cart() {
           </tbody>
         </table>
       </div>
+
+      <div className=" w-full mt-5 h-fit bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="px-5 pb-5">
+          <div className="flex items-center justify-between my-5">
+            <h5 className="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">
+              Total Price
+            </h5>
+            <span className="text-3xl font-bold text-gray-900 dark:text-white">
+              ${data?.totalCartPrice || 0}
+            </span>
+          </div>
+          {console.log(data)}
+          <Link
+            to={`/checkout/${data?._id}`}
+            className="text-lg text-white w-full block bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          >
+            Place Order
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
-
-/* 
-
-[
-  {
-      "count": 8,
-      "_id": "66ce88ff150535ca39370ed5",
-      "product": {
-          "subcategory": [
-              {
-                  "_id": "6407f1bcb575d3b90bf95797",
-                  "name": "Women's Clothing",
-                  "slug": "women's-clothing",
-                  "category": "6439d58a0049ad0b52b9003f"
-              }
-          ],
-          "_id": "6428ebc6dc1175abc65ca0b9",
-          "title": "Woman Shawl",
-          "quantity": 225,
-          "imageCover": "https://ecommerce.routemisr.com/Route-Academy-products/1680403397402-cover.jpeg",
-          "category": {
-              "_id": "6439d58a0049ad0b52b9003f",
-              "name": "Women's Fashion",
-              "slug": "women's-fashion",
-              "image": "https://ecommerce.routemisr.com/Route-Academy-categories/1681511818071.jpeg"
-          },
-          "brand": {
-              "_id": "64089bbe24b25627a253158b",
-              "name": "DeFacto",
-              "slug": "defacto",
-              "image": "https://ecommerce.routemisr.com/Route-Academy-brands/1678285758109.png"
-          },
-          "ratingsAverage": 4.8,
-          "id": "6428ebc6dc1175abc65ca0b9"
-      },
-      "price": 170
-  },
-  {
-      "count": 1,
-      "_id": "66ce88ff150535ca39370ed7",
-      "product": {
-          "subcategory": [
-              {
-                  "_id": "6407f1bcb575d3b90bf95797",
-                  "name": "Women's Clothing",
-                  "slug": "women's-clothing",
-                  "category": "6439d58a0049ad0b52b9003f"
-              }
-          ],
-          "_id": "6428ebc6dc1175abc65ca0b9",
-          "title": "Woman Shawl",
-          "quantity": 225,
-          "imageCover": "https://ecommerce.routemisr.com/Route-Academy-products/1680403397402-cover.jpeg",
-          "category": {
-              "_id": "6439d58a0049ad0b52b9003f",
-              "name": "Women's Fashion",
-              "slug": "women's-fashion",
-              "image": "https://ecommerce.routemisr.com/Route-Academy-categories/1681511818071.jpeg"
-          },
-          "brand": {
-              "_id": "64089bbe24b25627a253158b",
-              "name": "DeFacto",
-              "slug": "defacto",
-              "image": "https://ecommerce.routemisr.com/Route-Academy-brands/1678285758109.png"
-          },
-          "ratingsAverage": 4.8,
-          "id": "6428ebc6dc1175abc65ca0b9"
-      },
-      "price": 170
-  }
-]
-
-*/
