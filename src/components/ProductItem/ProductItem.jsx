@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { cartContext } from '../../context/Cart/Cart';
+import { wishlistContext } from '../../context/Wishlist/Wishlist';
 
 export function renderStars(rating) {
   const stars = [];
@@ -25,9 +26,21 @@ export function renderStars(rating) {
 export default function ProductItem({ product }) {
   const { addProduct } = useContext(cartContext);
 
+  const { addToWishlist } = useContext(wishlistContext);
+
   return (
     <div className="w-full lg:md:w-1/4 md:w-1/3 sm:w-1/2 mx-auto p-3">
-      <div className="bg-white mx-auto shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
+      <div className="relative bg-white mx-auto shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
+        <div className="text-right absolute top-3 left-3">
+          <button
+            onClick={() => addToWishlist(product._id)}
+            className="p-2 rounded-full bg-green-500 bg-opacity-25 hover:bg-opacity-50"
+          >
+            <i className="far fa-heart fa-fw fa-lg text-green-600"></i>
+            {/* <i className="fas fa-heart fa-fw fa-lg text-red-600 hover:text-red-700"></i> */}
+          </button>
+        </div>
+
         <Link to={`product/${product._id}`}>
           <img
             className="rounded-t-lg"
