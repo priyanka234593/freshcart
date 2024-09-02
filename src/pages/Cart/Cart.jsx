@@ -20,7 +20,6 @@ export default function Cart() {
 
   async function main() {
     const data = await getProducts();
-    // console.log(data);
     setData(data);
   }
 
@@ -162,7 +161,6 @@ export default function Cart() {
               ${data?.totalCartPrice || 0}
             </span>
           </div>
-          {console.log(data)}
           <Link
             to={`/checkout/${data?._id}`}
             className="text-lg text-white w-full block bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
