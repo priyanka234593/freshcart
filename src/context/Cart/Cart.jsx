@@ -8,11 +8,12 @@ export default function CartContextProvider(props) {
   const headers = {
     token: localStorage.getItem('authToken'),
   };
+  const URL = 'https://ecommerce.routemisr.com/api/v1/cart';
 
   function getProducts() {
     const config = {
       method: 'get',
-      url: 'https://ecommerce.routemisr.com/api/v1/cart',
+      url: URL,
       headers: headers,
     };
 
@@ -28,7 +29,7 @@ export default function CartContextProvider(props) {
 
     const config = {
       method: 'post',
-      url: 'https://ecommerce.routemisr.com/api/v1/cart',
+      url: URL,
       headers: headers,
       data: data,
     };
@@ -50,7 +51,7 @@ export default function CartContextProvider(props) {
   function deleteProduct(id) {
     let config = {
       method: 'delete',
-      url: `https://ecommerce.routemisr.com/api/v1/cart/${id}`,
+      url: `${URL}/${id}`,
       headers: headers,
     };
 
@@ -74,7 +75,7 @@ export default function CartContextProvider(props) {
 
     let config = {
       method: 'put',
-      url: `https://ecommerce.routemisr.com/api/v1/cart/${id}`,
+      url: `${URL}/${id}`,
       headers: headers,
       data: data,
     };
