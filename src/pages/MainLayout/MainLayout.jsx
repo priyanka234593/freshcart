@@ -12,7 +12,9 @@ export default function MainLayout() {
         </p>
       </Offline>
       <Navbar />
-      <Outlet />
+      <main className="mt-[87px]">
+        <Outlet />
+      </main>
       <Footer />
     </>
   );
