@@ -23,7 +23,7 @@ export function renderStars(rating) {
   return stars;
 }
 
-export default function ProductItem({ product }) {
+export default function ProductItem({ product, isWished }) {
   const { addProduct } = useContext(cartContext);
 
   const { addToWishlist } = useContext(wishlistContext);
@@ -36,8 +36,11 @@ export default function ProductItem({ product }) {
             onClick={() => addToWishlist(product._id)}
             className="p-2 rounded-full bg-green-500 bg-opacity-25 hover:bg-opacity-50"
           >
-            <i className="far fa-heart fa-fw fa-lg text-green-600"></i>
-            {/* <i className="fas fa-heart fa-fw fa-lg text-red-600 hover:text-red-700"></i> */}
+            {isWished ? (
+              <i className="fas fa-heart fa-fw fa-lg text-green-600"></i>
+            ) : (
+              <i className="far fa-heart fa-fw fa-lg text-green-600"></i>
+            )}
           </button>
         </div>
 
