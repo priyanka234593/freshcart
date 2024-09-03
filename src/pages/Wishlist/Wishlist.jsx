@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { wishlistContext } from '../../context/Wishlist/Wishlist';
 import Spinner from '../../components/Spinner/Spinner';
+import { cartContext } from '../../context/Cart/Cart';
 
 export default function Wishlist() {
   const { getWishlist, deleteWishlistItem } = useContext(wishlistContext);
+  const { addProduct } = useContext(cartContext);
   const [wishlistProducts, setWishlistProducts] = useState(null);
 
   async function fetchGetWishlist() {
@@ -73,12 +75,22 @@ export default function Wishlist() {
                         ${product.price}
                       </td>
                       <td className="px-6 py-4">
-                        <button
-                          onClick={() => fetchDeleteProduct(product._id)}
-                          className="font-medium text-red-600 dark:text-red-500 hover:underline"
-                        >
-                          Remove
-                        </button>
+                        <div className="flex flex-col space-y-3">
+                          <button
+                            href="#"
+                            onClick={() => addProduct(product._id)}
+                            className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                          >
+                            Add to cart
+                          </button>
+
+                          <button
+                            onClick={() => fetchDeleteProduct(product._id)}
+                            className="font-medium text-red-600 dark:text-red-500 hover:underline"
+                          >
+                            Remove
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))

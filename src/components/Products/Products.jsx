@@ -17,8 +17,19 @@ export default function Products() {
     return await axios.get('https://ecommerce.routemisr.com/api/v1/products');
   }
 
-  const { getWishlist } = useContext(wishlistContext);
+  const { getWishlist, addToWishlist, deleteWishlistItem } =
+    useContext(wishlistContext);
+
   const [wishlistIds, setWishlistIds] = useState(null);
+
+  async function handleWishlist(id) {
+    if (wishlistIds?.indexOf(id) !== -1) {
+      await deleteWishlistItem(id);
+    } else {
+      await addToWishlist(id);
+    }
+    main();
+  }
 
   async function main() {
     const wishlistItems = await getWishlist();
@@ -42,6 +53,7 @@ export default function Products() {
               product={product}
               isWished={wishlistIds?.indexOf(product._id) !== -1 ? true : false}
               key={product._id}
+              handleWishlist={handleWishlist}
             />
           ))
         ) : (
