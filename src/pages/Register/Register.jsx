@@ -81,7 +81,6 @@ export default function Register() {
       phone: '',
     },
     onSubmit: handleRegister,
-    // validate: validateInputs,
     validationSchema: validate,
   });
 
@@ -96,9 +95,7 @@ export default function Register() {
         className="max-w-md mx-auto"
         onSubmit={formik.handleSubmit}
       >
-        <h1 className="text-2xl text-gray-500 mb-5 mt-8 font-bold">
-          Register Now
-        </h1>
+        <h1 className="text-2xl text-gray-500 mb-5 font-bold">Register Now</h1>
         {err && <div className="bg-red-300 py-1 mb-4 font-light">{err}</div>}
         <div className="relative z-0 w-full mb-5 group">
           <input
@@ -110,7 +107,6 @@ export default function Register() {
             value={formik.values.name}
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
             placeholder=" "
-            // required
           />
           <label
             htmlFor="name"
@@ -134,7 +130,6 @@ export default function Register() {
             value={formik.values.email}
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
             placeholder=" "
-            // required
           />
           <label
             htmlFor="email"
@@ -158,7 +153,6 @@ export default function Register() {
             value={formik.values.password}
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
             placeholder=" "
-            // required
           />
           <label
             htmlFor="password"
@@ -182,7 +176,6 @@ export default function Register() {
             value={formik.values.rePassword}
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
             placeholder=" "
-            // required
           />
           <label
             htmlFor="rePassword"
@@ -199,7 +192,6 @@ export default function Register() {
         <div className="relative z-0 w-full mb-5 group">
           <input
             type="tel"
-            // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
             name="phone"
             id="phone"
             onChange={formik.handleChange}
@@ -207,7 +199,6 @@ export default function Register() {
             value={formik.values.phone}
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
             placeholder=" "
-            // required
           />
           <label
             htmlFor="phone"

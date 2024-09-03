@@ -21,7 +21,6 @@ export default function ResetPassword() {
   const navigate = useNavigate();
 
   function handleRegister(data) {
-    console.log(data);
     setIsLoading(true);
     axios
       .put('https://ecommerce.routemisr.com/api/v1/auth/resetPassword', data)
@@ -75,7 +74,7 @@ export default function ResetPassword() {
         className="max-w-md mx-auto"
         onSubmit={formik.handleSubmit}
       >
-        <h1 className="text-2xl text-gray-500 mb-5 mt-8 font-bold">
+        <h1 className="text-2xl text-gray-500 mb-5 font-bold">
           Reset Password
         </h1>
         {err && <div className="bg-red-300 py-1 mb-4 font-light">{err}</div>}
@@ -89,7 +88,6 @@ export default function ResetPassword() {
             value={formik.values.newPassword}
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
             placeholder=" "
-            // required
           />
           <label
             htmlFor="newPassword"

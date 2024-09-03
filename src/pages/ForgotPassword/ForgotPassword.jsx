@@ -9,7 +9,6 @@ import toast from 'react-hot-toast';
 export default function ForgotPassword() {
   const [err, setErr] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  // const { setUserToken } = useContext(authContext);
 
   const buttonProps = {
     type: 'submit',
@@ -34,9 +33,9 @@ export default function ForgotPassword() {
         }
       })
       .catch((err) => {
-        console.log(err);
         setIsLoading(false);
         setErr(err.response.data.message);
+        throw err;
       });
   }
 
@@ -65,7 +64,7 @@ export default function ForgotPassword() {
         className="max-w-md mx-auto"
         onSubmit={formik.handleSubmit}
       >
-        <h1 className="text-2xl text-gray-500 mb-5 mt-8 font-bold">
+        <h1 className="text-2xl text-gray-500 mb-5 font-bold">
           Enter Your Email:
         </h1>
         {err && <div className="bg-red-300 py-1 mb-4 font-light">{err}</div>}
@@ -80,7 +79,6 @@ export default function ForgotPassword() {
             value={formik.values.email}
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
             placeholder=" "
-            // required
           />
           <label
             htmlFor="email"

@@ -41,7 +41,7 @@ export default function ProductDetails() {
         <title>{ProdDetails.title}</title>
       </Helmet>
 
-      <div className="container mt-10 dark:bg-gray-800">
+      <div className="container dark:bg-gray-800">
         <div className="flex flex-col md:flex-row md:space-x-8">
           <div className="w-full md:w-1/3 mb-8 md:mb-0">
             <div className="rounded-lg mb-7 dark:bg-gray-700">

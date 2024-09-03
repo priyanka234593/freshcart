@@ -75,7 +75,7 @@ export default function Checkout() {
         className="max-w-md mx-auto"
         onSubmit={formik.handleSubmit}
       >
-        <h1 className="text-2xl text-gray-500 mb-5 mt-8 font-bold">Checkout</h1>
+        <h1 className="text-2xl text-gray-500 mb-5 font-bold">Checkout</h1>
         <div className="relative z-0 w-full mb-5 group">
           <input
             type="text"
@@ -86,7 +86,6 @@ export default function Checkout() {
             value={formik.values.details}
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
             placeholder=" "
-            // required
           />
           <label
             htmlFor="details"
@@ -110,7 +109,6 @@ export default function Checkout() {
             value={formik.values.city}
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
             placeholder=" "
-            // required
           />
           <label
             htmlFor="city"
@@ -127,7 +125,6 @@ export default function Checkout() {
         <div className="relative z-0 w-full mb-5 group">
           <input
             type="tel"
-            // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
             name="phone"
             id="phone"
             onChange={formik.handleChange}
@@ -135,7 +132,6 @@ export default function Checkout() {
             value={formik.values.phone}
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
             placeholder=" "
-            // required
           />
           <label
             htmlFor="phone"
