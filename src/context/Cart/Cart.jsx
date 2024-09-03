@@ -56,8 +56,7 @@ export default function CartContextProvider(props) {
     };
 
     return toast.promise(
-      axios
-        .request(config)
+      axios(config)
         .then((response) => response.data)
         .catch((error) => {
           throw error;
@@ -94,9 +93,30 @@ export default function CartContextProvider(props) {
     );
   }
 
+  function emptyCart() {
+    let config = {
+      method: 'delete',
+      url: URL,
+      headers: headers,
+    };
+
+    return axios
+      .request(config)
+      .then((response) => response.data)
+      .catch((error) => {
+        throw error;
+      });
+  }
+
   return (
     <cartContext.Provider
-      value={{ getProducts, addProduct, deleteProduct, updateProductQuantity }}
+      value={{
+        getProducts,
+        addProduct,
+        deleteProduct,
+        updateProductQuantity,
+        emptyCart,
+      }}
     >
       {props.children}
     </cartContext.Provider>

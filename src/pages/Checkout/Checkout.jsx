@@ -1,13 +1,15 @@
 import { useFormik } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { cartContext } from '../../context/Cart/Cart';
 
 export default function Checkout() {
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
+  const { emptyCart } = useContext(cartContext);
 
   const buttonProps = {
     type: 'submit',
@@ -32,6 +34,7 @@ export default function Checkout() {
 
       if (response.data.status === 'success') {
         window.location.href = response.data.session.url;
+        emptyCart(); // This is to emulate the empty cart after checkout
       }
     });
   }
