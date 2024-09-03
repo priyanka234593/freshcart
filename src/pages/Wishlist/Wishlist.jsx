@@ -47,7 +47,7 @@ export default function Wishlist() {
                   <tr>
                     <td
                       colSpan={4}
-                      className="text-center text-3xl h-20 font-bold"
+                      className="text-center text-xl h-20 font-bold md:text-2xl lg:text-3xl"
                     >
                       <i className="fas fa-box-open me-3"></i>
                       Wow, such empty!

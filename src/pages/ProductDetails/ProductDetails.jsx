@@ -31,7 +31,7 @@ export default function ProductDetails() {
         setProdDetails(response.data.data);
       })
       .catch((error) => {
-        console.log(error);
+        throw error;
       });
   }, []);
 
@@ -59,8 +59,6 @@ export default function ProductDetails() {
                   : ''}
               </Slider>
             </div>
-
-            {console.log(ProdDetails)}
             <div className="flex mt-4 space-x-4">
               <button
                 onClick={() => addProduct(ProdDetails.id)}
