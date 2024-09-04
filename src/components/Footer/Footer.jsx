@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import logo from '../../assets/freshcart-logo.svg';
+import { useContext } from 'react';
+import { authContext } from '../../context/Auth/Auth';
 
 export default function Footer() {
+  const { userToken } = useContext(authContext);
+
   return (
     <>
       <footer className="bg-white border border-t-1 mt-6 dark:bg-gray-900">
@@ -60,24 +64,43 @@ export default function Footer() {
                   <h3 className="text-gray-700 uppercase dark:text-white">
                     Jump to
                   </h3>
-                  <Link
-                    to="/"
-                    className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
-                  >
-                    <i className="fa-fw  fas fa-home"></i> Home
-                  </Link>
-                  <Link
-                    to="/wishlist"
-                    className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
-                  >
-                    <i className="fa-fw  fas fa-heart"></i> Wishlist
-                  </Link>
-                  <Link
-                    to="/cart"
-                    className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
-                  >
-                    <i className="fa-fw  fas fa-shopping-cart"></i> Cart
-                  </Link>
+                  {userToken ? (
+                    <>
+                      <Link
+                        to="/"
+                        className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                      >
+                        <i className="fa-fw  fas fa-home"></i> Home
+                      </Link>
+                      <Link
+                        to="/wishlist"
+                        className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                      >
+                        <i className="fa-fw  fas fa-heart"></i> Wishlist
+                      </Link>
+                      <Link
+                        to="/cart"
+                        className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                      >
+                        <i className="fa-fw  fas fa-shopping-cart"></i> Cart
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <Link
+                        to="login"
+                        className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                      >
+                        <i className="fas fa-sign-in-alt"></i> Login
+                      </Link>
+                      <Link
+                        to="register"
+                        className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                      >
+                        <i className="fas fa-user-plus fa-fw"></i> Register
+                      </Link>
+                    </>
+                  )}
                 </div>
                 <div>
                   <h3 className="text-gray-700 uppercase dark:text-white">
@@ -138,8 +161,8 @@ export default function Footer() {
           <div>
             <p className="text-center text-gray-500 dark:text-gray-400">
               <div>
-                "It does not matter how slowly you go as long as you do not
-                stop." - <span className="italic text-md">Confucius</span>
+                &quot;It does not matter how slowly you go as long as you do not
+                stop.&quot; - <span className="italic text-md">Confucius</span>
               </div>
             </p>
           </div>

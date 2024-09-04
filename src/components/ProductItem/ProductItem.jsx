@@ -45,7 +45,7 @@ export default function ProductItem({ product, isWished, handleWishlist }) {
           <img
             className="rounded-t-lg"
             src={product.imageCover}
-            alt="product image"
+            alt={product.title}
           />
         </Link>
         <div className="px-5 pb-5">

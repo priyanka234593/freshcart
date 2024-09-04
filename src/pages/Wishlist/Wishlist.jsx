@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { wishlistContext } from '../../context/Wishlist/Wishlist';
 import Spinner from '../../components/Spinner/Spinner';
 import { cartContext } from '../../context/Cart/Cart';
+import { Link } from 'react-router-dom';
 
 export default function Wishlist() {
   const { getWishlist, deleteWishlistItem } = useContext(wishlistContext);
@@ -62,14 +63,22 @@ export default function Wishlist() {
                       className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                     >
                       <td className="p-4">
-                        <img
-                          src={product.imageCover}
-                          className="w-16 md:w-32 max-w-full max-h-full rounded-lg"
-                          alt="Apple Watch"
-                        />
+                        <Link to={`/product/${product._id}`}>
+                          <img
+                            src={product.imageCover}
+                            className="w-16 md:w-32 max-w-full max-h-full rounded-lg"
+                            alt={product.title}
+                          />
+                        </Link>
                       </td>
+
                       <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                        {product.title}
+                        <Link
+                          to={`/product/${product._id}`}
+                          className="hover:underline"
+                        >
+                          {product.title}
+                        </Link>
                       </td>
                       <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
                         ${product.price}
@@ -81,7 +90,10 @@ export default function Wishlist() {
                             onClick={() => addProduct(product._id)}
                             className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                           >
-                            Add to cart
+                            <i className="fas fa-cart-plus me-2"></i>
+                            <span className="hidden md:inline">
+                              Add to cart
+                            </span>
                           </button>
 
                           <button
