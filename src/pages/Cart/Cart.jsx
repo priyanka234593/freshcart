@@ -70,14 +70,21 @@ export default function Cart() {
                     className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                   >
                     <td className="p-4">
-                      <img
-                        src={product.product.imageCover}
-                        className="w-16 md:w-32 max-w-full max-h-full rounded-lg"
-                        alt="Apple Watch"
-                      />
+                      <Link to={`/product/${product.product._id}`}>
+                        <img
+                          src={product.product.imageCover}
+                          className="w-16 md:w-32 max-w-full max-h-full rounded-lg"
+                          alt="Apple Watch"
+                        />
+                      </Link>
                     </td>
                     <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                      {product.product.title}
+                      <Link
+                        to={`/product/${product.product._id}`}
+                        className="hover:underline"
+                      >
+                        {product.product.title}
+                      </Link>
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center">

@@ -42,7 +42,7 @@ export default function Brands() {
               <div className="relative bg-white mx-auto transition-shadow hover:shadow-green-300 shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
                 <div>
                   <img
-                    className="rounded-lg"
+                    className="rounded-lg mx-auto"
                     src={brand.image}
                     alt={brand.name}
                   />

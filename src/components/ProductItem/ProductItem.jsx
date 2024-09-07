@@ -27,7 +27,7 @@ export default function ProductItem({ product, isWished, handleWishlist }) {
 
   return (
     <div className="w-full lg:md:w-1/4 md:w-1/3 sm:w-1/2 mx-auto p-3">
-      <div className="relative bg-white mx-auto shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
+      <div className="relative bg-white mx-auto hover:shadow-green-300 transition-shadow shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
         <div className="text-right absolute top-3 left-3">
           <button
             onClick={() => handleWishlist(product._id)}
@@ -49,7 +49,7 @@ export default function ProductItem({ product, isWished, handleWishlist }) {
           />
         </Link>
         <div className="px-5 pb-5">
-          <Link to={`product/${product._id}`}>
+          <Link to={`product/${product._id}`} className="hover:underline">
             <h3 className="text-gray-900 overflow-hidden text-ellipsis whitespace-nowrap font-semibold text-xl tracking-tight dark:text-white">
               {product.title}
             </h3>

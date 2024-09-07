@@ -20,17 +20,32 @@ export default function MainSlider() {
       <div className="flex">
         <div className="md:w-3/4 w-full my-0">
           <Slider {...settings}>
-            <img className="w-full h-[400px] object-cover" src={img1} />
-            <img className="w-full h-[400px] object-cover" src={img2} />
-            <img className="w-full h-[400px] object-cover" src={img3} />
+            <img
+              className="w-full h-[400px] object-cover rounded-lg md:rounded-l-lg md:rounded-r-none"
+              src={img1}
+            />
+            <img
+              className="w-full h-[400px] object-cover rounded-lg md:rounded-l-lg md:rounded-r-none"
+              src={img2}
+            />
+            <img
+              className="w-full h-[400px] object-cover rounded-lg md:rounded-l-lg md:rounded-r-none"
+              src={img3}
+            />
           </Slider>
         </div>
         <div className="md:w-1/4 md:block hidden">
           <div className="h-1/2">
-            <img className="w-full h-[200px] object-cover" src={img2} />
+            <img
+              className="w-full h-[200px] object-cover md:rounded-tr-lg"
+              src={img2}
+            />
           </div>
           <div className="h-1/2">
-            <img className="w-full h-[200px] object-cover" src={img3} />
+            <img
+              className="w-full h-[200px] object-cover md:rounded-br-lg"
+              src={img3}
+            />
           </div>
         </div>
       </div>
