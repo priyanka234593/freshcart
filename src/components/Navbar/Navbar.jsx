@@ -171,6 +171,14 @@ export default function Navbar() {
                     </Link>
                   </li>
                   <li>
+                    <Link to="brands" className={getLinkClass('/brands')}>
+                      <div className="flex md:flex-col md:justify-center items-center space-x-1">
+                        <i className="fa-solid fa-tags" />
+                        <span>Brands</span>
+                      </div>
+                    </Link>
+                  </li>
+                  <li>
                     <Link
                       to="login"
                       onClick={logout}

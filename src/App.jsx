@@ -19,6 +19,7 @@ import ResetPassword from './pages/ResetPassword/ResetPassword';
 import VerifyCode from './pages/VerifyCode/VerifyCode';
 import Checkout from './pages/Checkout/Checkout';
 import Wishlist from './pages/Wishlist/Wishlist';
+import Brands from './pages/Brands/Brands';
 
 function App() {
   const queryClient = new QueryClient();
@@ -76,6 +77,14 @@ function App() {
           element: (
             <ProtectedRoute>
               <Wishlist />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: 'brands',
+          element: (
+            <ProtectedRoute>
+              <Brands />
             </ProtectedRoute>
           ),
         },
