@@ -14,11 +14,11 @@ export default function Footer() {
             <div className="w-full -mx-6 lg:w-2/5">
               <div className="px-6">
                 <a href="#">
-                  <img className="w-auto h-7" src={logo} alt />
+                  <img className="w-auto h-7" src={logo} alt="Site Logo" />
                 </a>
-                <p className="max-w-sm mt-2 text-gray-500 dark:text-gray-400">
-                  Discover More, Spend Less – Shop the Best at Your Fingertips!
-                </p>
+                <div className="max-w-sm mt-2 text-gray-500 dark:text-gray-400">
+                  Discover More, Spend Less - Shop the Best at Your Fingertips!
+                </div>
               </div>
             </div>
             <div className="mt-6 lg:mt-0 lg:flex-1">
@@ -159,17 +159,15 @@ export default function Footer() {
           </div>
           <hr className="h-px my-4 bg-gray-200 border-none dark:bg-gray-700" />
           <div>
-            <p className="text-center text-gray-500 dark:text-gray-400">
-              <div>
-                &quot;It does not matter how slowly you go as long as you do not
-                stop.&quot; - <span className="italic text-md">Confucius</span>
-              </div>
-            </p>
+            <div className="text-center text-gray-500 dark:text-gray-400">
+              &quot;It does not matter how slowly you go as long as you do not
+              stop.&quot; - <span className="italic text-md">Confucius</span>
+            </div>
           </div>
           <div>
-            <p className="text-center italic py-3 text-gray-500 dark:text-gray-400">
-              <div>Made with love and passion by Mohamed Emary</div>
-            </p>
+            <div className="text-center italic py-3 text-gray-500 dark:text-gray-400">
+              Made with love and passion by Mohamed Emary
+            </div>
           </div>
         </div>
       </footer>
