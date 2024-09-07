@@ -84,6 +84,18 @@ export default function Footer() {
                       >
                         <i className="fa-fw  fas fa-shopping-cart"></i> Cart
                       </Link>
+                      <Link
+                        to="/brands"
+                        className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                      >
+                        <i className="fa-fw  fas fas fa-tags"></i> Brands
+                      </Link>
+                      <Link
+                        to="/categories"
+                        className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                      >
+                        <i className="fa-fw  fas fa-list"></i> Categories
+                      </Link>
                     </>
                   ) : (
                     <>

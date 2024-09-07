@@ -31,7 +31,7 @@ export default function Navbar() {
             to="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            <img src={logo} className="h-8" alt="Flowbite Logo" />
+            <img src={logo} className="h-8" alt="Freshcart Logo" />
           </Link>
           <div className="flex md:order-2">
             <button
@@ -175,6 +175,17 @@ export default function Navbar() {
                       <div className="flex md:flex-col md:justify-center items-center space-x-1">
                         <i className="fa-solid fa-tags" />
                         <span>Brands</span>
+                      </div>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="categories"
+                      className={getLinkClass('/categories')}
+                    >
+                      <div className="flex md:flex-col md:justify-center items-center space-x-1">
+                        <i className="fa-solid fa-list" />
+                        <span>Categories</span>
                       </div>
                     </Link>
                   </li>
