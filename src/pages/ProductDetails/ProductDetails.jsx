@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
-import { renderStars } from '../../components/ProductItem/ProductItem.jsx';
 import Slider from 'react-slick/lib/slider.js';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { cartContext } from '../../context/Cart/Cart.jsx';
+import { productsContext } from '../../context/Products/Products.jsx';
 
 export default function ProductDetails() {
   const { addProduct } = useContext(cartContext);
-
+  const { renderStars } = useContext(productsContext);
   const [ProdDetails, setProdDetails] = useState([]);
 
   const settings = {

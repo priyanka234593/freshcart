@@ -21,6 +21,8 @@ import Checkout from './pages/Checkout/Checkout';
 import Wishlist from './pages/Wishlist/Wishlist';
 import Brands from './pages/Brands/Brands';
 import Categories from './pages/Categories/Categories';
+import ProductsContextProvider from './context/Products/Products';
+import Search from './pages/Search/Search';
 
 function App() {
   const queryClient = new QueryClient();
@@ -97,6 +99,14 @@ function App() {
             </ProtectedRoute>
           ),
         },
+        {
+          path: 'search',
+          element: (
+            <ProtectedRoute>
+              <Search />
+            </ProtectedRoute>
+          ),
+        },
         { path: '*', element: <NotFound /> },
       ],
     },
@@ -106,9 +116,11 @@ function App() {
       <CartContextProvider>
         <WishlistContextProvider>
           <QueryClientProvider client={queryClient}>
-            <Toaster />
-            {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-            <RouterProvider router={router} />
+            <ProductsContextProvider>
+              <Toaster />
+              {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+              <RouterProvider router={router} />
+            </ProductsContextProvider>
           </QueryClientProvider>
         </WishlistContextProvider>
       </CartContextProvider>

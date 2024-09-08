@@ -1,16 +1,34 @@
 import logo from '../../assets/freshcart-logo.svg';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { authContext } from '../../context/Auth/Auth';
 import { initFlowbite } from 'flowbite';
+import { productsContext } from '../../context/Products/Products';
+import Search from '../../pages/Search/Search';
 
 export default function Navbar() {
   const { userToken, setUserToken } = useContext(authContext);
   const location = useLocation();
 
+  const { data, setSearchRes, searchRes } = useContext(productsContext);
+
   function logout() {
     setUserToken(null);
     localStorage.removeItem('authToken');
+  }
+
+  const navigate = useNavigate();
+  function handleSearch(e) {
+    if (e.key === 'Enter') {
+      const query = e.target.value;
+
+      const filteredProducts = data.filter((product) =>
+        product.title.toLowerCase().includes(query.toLowerCase().trim())
+      );
+
+      setSearchRes(filteredProducts);
+      navigate('/search');
+    }
   }
 
   useEffect(() => {
@@ -79,6 +97,7 @@ export default function Navbar() {
               </div>
               <input
                 type="text"
+                onKeyUp={(e) => handleSearch(e)}
                 id="search-navbar"
                 className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                 placeholder="Search..."
@@ -133,6 +152,7 @@ export default function Navbar() {
               </div>
               <input
                 type="text"
+                onKeyUp={(e) => handleSearch(e)}
                 id="search-navbar"
                 className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                 placeholder="Search..."

@@ -68,13 +68,11 @@ export default function CategorySlider() {
                 key={category._id}
                 className="rounded-lg px-4 dark:bg-gray-800 dark:border-gray-700"
               >
-                <a href="#">
-                  <img
-                    className="rounded-lg object-cover object-top w-full h-80"
-                    src={category.image}
-                    alt={category.name}
-                  />
-                </a>
+                <img
+                  className="rounded-lg hover:shadow-green-300 transition-shadow shadow-md object-cover object-top w-full h-80"
+                  src={category.image}
+                  alt={category.name}
+                />
                 <div className="text-center">
                   <a href="#">
                     <h3 className="text-gray-900 mt-2 overflow-hidden text-ellipsis whitespace-nowrap font-semibold text-xl tracking-tight dark:text-white">
