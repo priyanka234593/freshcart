@@ -1,12 +1,15 @@
 import axios from 'axios';
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 import { toast } from 'react-hot-toast';
+import { authContext } from '../Auth/Auth';
 
 export const wishlistContext = createContext(null);
 
 export default function WishlistContextProvider(props) {
+  const { userToken } = useContext(authContext);
+
   const headers = {
-    token: localStorage.getItem('authToken'),
+    token: userToken,
   };
   const URL = 'https://ecommerce.routemisr.com/api/v1/wishlist';
 

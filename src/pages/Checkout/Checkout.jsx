@@ -5,11 +5,13 @@ import { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { cartContext } from '../../context/Cart/Cart';
+import { authContext } from '../../context/Auth/Auth';
 
 export default function Checkout() {
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
   const { emptyCart } = useContext(cartContext);
+  const { userToken } = useContext(authContext);
 
   const buttonProps = {
     type: 'submit',
@@ -24,7 +26,7 @@ export default function Checkout() {
       method: 'post',
       url: `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${id}?url=http://localhost:5173/`,
       headers: {
-        token: localStorage.getItem('authToken'),
+        token: userToken,
       },
       data: data,
     };
