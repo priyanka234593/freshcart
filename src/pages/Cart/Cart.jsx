@@ -155,7 +155,7 @@ export default function Cart() {
                       </div>
                     </td>
                     <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                      ${product.price * product.count}
+                      EGP {product.price * product.count}
                     </td>
                     <td className="px-6 py-4">
                       <button
@@ -188,7 +188,7 @@ export default function Cart() {
               Total Price
             </h5>
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
-              ${data?.totalCartPrice || 0}
+              EGP {data?.totalCartPrice || 0}
             </span>
           </div>
           <Link

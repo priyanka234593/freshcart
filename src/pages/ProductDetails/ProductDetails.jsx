@@ -109,7 +109,7 @@ export default function ProductDetails() {
                 <div className="text-2xl font-bold text-gray-700 dark:text-gray-300">
                   Price
                 </div>
-                <div className="text-xl font-bold">${ProdDetails.price}</div>
+                <div className="text-xl font-bold">EGP {ProdDetails.price}</div>
               </div>
             </div>
           </div>

@@ -21,15 +21,15 @@ export default function MainSlider() {
         <div className="md:w-3/4 w-full my-0">
           <Slider {...settings}>
             <img
-              className="w-full h-[400px] object-cover rounded-lg md:rounded-l-lg md:rounded-r-none"
+              className="w-full h-[400px] object-cover object-right rounded-lg md:rounded-l-lg md:rounded-r-none"
               src={img1}
             />
             <img
-              className="w-full h-[400px] object-cover rounded-lg md:rounded-l-lg md:rounded-r-none"
+              className="w-full h-[400px] object-cover object-right rounded-lg md:rounded-l-lg md:rounded-r-none"
               src={img2}
             />
             <img
-              className="w-full h-[400px] object-cover rounded-lg md:rounded-l-lg md:rounded-r-none"
+              className="w-full h-[400px] object-cover object-right rounded-lg md:rounded-l-lg md:rounded-r-none"
               src={img3}
             />
           </Slider>

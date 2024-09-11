@@ -81,7 +81,7 @@ export default function Wishlist() {
                         </Link>
                       </td>
                       <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                        ${product.price}
+                        EGP {product.price}
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex flex-col space-y-3">

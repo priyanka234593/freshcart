@@ -36,7 +36,6 @@ export default function Checkout() {
 
       if (response.data.status === 'success') {
         window.location.href = response.data.session.url;
-        emptyCart(); // This is to emulate the empty cart after checkout
       }
     });
   }
@@ -72,89 +71,91 @@ export default function Checkout() {
         <title>Checkout</title>
       </Helmet>
 
-      <form
-        method="post"
-        className="max-w-md mx-auto"
-        onSubmit={formik.handleSubmit}
-      >
-        <h1 className="text-2xl text-gray-500 mb-5 font-bold">Checkout</h1>
-        <div className="relative z-0 w-full mb-5 group">
-          <input
-            type="text"
-            name="details"
-            id="details"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.details}
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
-            placeholder=" "
-          />
-          <label
-            htmlFor="details"
-            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-600 peer-focus:dark:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Details
-          </label>
-          {formik.errors.details && formik.touched.details && (
-            <span className="text-red-600 font-light text-sm">
-              {formik.errors.details}
-            </span>
+      <div className="container">
+        <form
+          method="post"
+          className="max-w-md mx-auto"
+          onSubmit={formik.handleSubmit}
+        >
+          <h1 className="text-2xl text-gray-500 mb-5 font-bold">Checkout</h1>
+          <div className="relative z-0 w-full mb-5 group">
+            <input
+              type="text"
+              name="details"
+              id="details"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.details}
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
+              placeholder=" "
+            />
+            <label
+              htmlFor="details"
+              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-600 peer-focus:dark:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Details
+            </label>
+            {formik.errors.details && formik.touched.details && (
+              <span className="text-red-600 font-light text-sm">
+                {formik.errors.details}
+              </span>
+            )}
+          </div>
+          <div className="relative z-0 w-full mb-5 group">
+            <input
+              type="text"
+              name="city"
+              id="city"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.city}
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
+              placeholder=" "
+            />
+            <label
+              htmlFor="city"
+              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-600 peer-focus:dark:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Address*
+            </label>
+            {formik.errors.city && formik.touched.city && (
+              <span className="text-red-600 font-light text-sm">
+                {formik.errors.city}
+              </span>
+            )}
+          </div>
+          <div className="relative z-0 w-full mb-5 group">
+            <input
+              type="tel"
+              name="phone"
+              id="phone"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.phone}
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
+              placeholder=" "
+            />
+            <label
+              htmlFor="phone"
+              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-600 peer-focus:dark:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Phone Number*
+            </label>
+            {formik.errors.phone && formik.touched.phone && (
+              <span className="text-red-600 font-light text-sm">
+                {formik.errors.phone}
+              </span>
+            )}
+          </div>
+          {isLoading ? (
+            <button {...buttonProps} disabled>
+              Loading...
+            </button>
+          ) : (
+            <button {...buttonProps}>Checkout</button>
           )}
-        </div>
-        <div className="relative z-0 w-full mb-5 group">
-          <input
-            type="text"
-            name="city"
-            id="city"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.city}
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
-            placeholder=" "
-          />
-          <label
-            htmlFor="city"
-            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-600 peer-focus:dark:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Address*
-          </label>
-          {formik.errors.city && formik.touched.city && (
-            <span className="text-red-600 font-light text-sm">
-              {formik.errors.city}
-            </span>
-          )}
-        </div>
-        <div className="relative z-0 w-full mb-5 group">
-          <input
-            type="tel"
-            name="phone"
-            id="phone"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.phone}
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
-            placeholder=" "
-          />
-          <label
-            htmlFor="phone"
-            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-600 peer-focus:dark:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Phone Number*
-          </label>
-          {formik.errors.phone && formik.touched.phone && (
-            <span className="text-red-600 font-light text-sm">
-              {formik.errors.phone}
-            </span>
-          )}
-        </div>
-        {isLoading ? (
-          <button {...buttonProps} disabled>
-            Loading...
-          </button>
-        ) : (
-          <button {...buttonProps}>Checkout</button>
-        )}
-      </form>
+        </form>
+      </div>
     </>
   );
 }
