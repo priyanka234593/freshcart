@@ -23,6 +23,7 @@ import Brands from './pages/Brands/Brands';
 import Categories from './pages/Categories/Categories';
 import ProductsContextProvider from './context/Products/Products';
 import Search from './pages/Search/Search';
+import RedirectIfAuthenticated from './components/RedirectIfAuthenticated/RedirectIfAuthenticated';
 
 function App() {
   const queryClient = new QueryClient();
@@ -40,8 +41,22 @@ function App() {
             </ProtectedRoute>
           ),
         },
-        { path: 'login', element: <Login /> },
-        { path: 'register', element: <Register /> },
+        {
+          path: 'login',
+          element: (
+            <RedirectIfAuthenticated>
+              <Login />
+            </RedirectIfAuthenticated>
+          ),
+        },
+        {
+          path: 'register',
+          element: (
+            <RedirectIfAuthenticated>
+              <Register />
+            </RedirectIfAuthenticated>
+          ),
+        },
         {
           path: 'forgotPassword',
           element: <ForgotPassword />,
