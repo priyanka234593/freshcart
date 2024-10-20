@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { cartContext } from '../../context/Cart/Cart.jsx';
 import { productsContext } from '../../context/Products/Products.jsx';
+import { wishlistContext } from '../../context/Wishlist/Wishlist.jsx';
 
 export default function ProductDetails() {
   const { addProduct } = useContext(cartContext);
@@ -23,6 +24,8 @@ export default function ProductDetails() {
   };
 
   const { id } = useParams();
+
+  const { addToWishlist } = useContext(wishlistContext);
 
   useEffect(() => {
     axios
@@ -66,7 +69,9 @@ export default function ProductDetails() {
               >
                 Add to cart
               </button>
-              <button className="w-1/2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-lg font-bold hover:bg-gray-300 dark:hover:bg-gray-600">
+              <button className="w-1/2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-lg font-bold hover:bg-gray-300 dark:hover:bg-gray-600"
+                onClick={() => addToWishlist(ProdDetails.id)}
+              >
                 Add to Wishlist
               </button>
             </div>
