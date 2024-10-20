@@ -24,7 +24,7 @@ export default function Checkout() {
 
     const config = {
       method: 'post',
-      url: `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${id}?url=http://localhost:5173/`,
+      url: `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${id}?url=https://ecommerce-nine-ivory-88.vercel.app/`,
       headers: {
         token: userToken,
       },
@@ -42,8 +42,8 @@ export default function Checkout() {
 
   const validate = Yup.object({
     city: Yup.string()
-      .required('Name is required')
-      .min(3, 'Name must be at least 3 characters'),
+      .required('Address is required')
+      .min(3, 'Address must be at least 3 characters'),
 
     details: Yup.string(),
 

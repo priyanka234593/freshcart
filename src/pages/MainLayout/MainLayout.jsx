@@ -12,13 +12,12 @@ export default function MainLayout() {
         </p>
       </Offline>
       <Navbar />
-      <main className="flex-grow flex items-center mt-[87px]">
+      <main className="flex-grow flex mt-[87px]">
         <div className="w-full">
           <Outlet />
         </div>
       </main>
       <Footer />
     </div>
-
   );
 }
