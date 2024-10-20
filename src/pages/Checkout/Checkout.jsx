@@ -16,7 +16,7 @@ export default function Checkout() {
   const buttonProps = {
     type: 'submit',
     className:
-      'text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 select-none',
+      'sm:w-36 w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 select-none',
   };
 
   function handleCheckout(data) {
@@ -42,8 +42,8 @@ export default function Checkout() {
 
   const validate = Yup.object({
     city: Yup.string()
-      .required('Name is required')
-      .min(3, 'Name must be at least 3 characters'),
+      .required('Address is required')
+      .min(3, 'Address must be at least 3 characters'),
 
     details: Yup.string(),
 
@@ -51,7 +51,7 @@ export default function Checkout() {
       .required('Phone number is required')
       .matches(
         /^01[0-2|5]{1}[0-9]{8}$/,
-        'Phone number is not valid (123-456-7890)'
+        'Phone number is not valid (01234567891)'
       ),
   });
 
@@ -149,7 +149,7 @@ export default function Checkout() {
           </div>
           {isLoading ? (
             <button {...buttonProps} disabled>
-              Loading...
+              <i className="fa-solid fa-spinner animate-spin"></i>
             </button>
           ) : (
             <button {...buttonProps}>Checkout</button>
