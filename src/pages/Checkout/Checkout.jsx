@@ -24,7 +24,7 @@ export default function Checkout() {
 
     const config = {
       method: 'post',
-      url: `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${id}?url=http://localhost:5173/`,
+      url: `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${id}?url=https://ecommerce-nine-ivory-88.vercel.app/`,
       headers: {
         token: userToken,
       },

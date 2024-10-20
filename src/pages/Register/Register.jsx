@@ -15,7 +15,7 @@ export default function Register() {
   const buttonProps = {
     type: 'submit',
     className:
-      'text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 select-none',
+      'sm:w-36 w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 select-none',
   };
 
   const navigate = useNavigate();
@@ -93,7 +93,7 @@ export default function Register() {
       <div className="container">
         <form
           method="post"
-          className="max-w-md mx-auto"
+          className="max-w-md mx-auto md:mt-12 mt-0"
           onSubmit={formik.handleSubmit}
         >
           <h1 className="text-2xl text-gray-500 mb-5 font-bold">
@@ -217,7 +217,7 @@ export default function Register() {
           </div>
           {isLoading ? (
             <button {...buttonProps} disabled>
-              Loading...
+              <i className="fa-solid fa-spinner animate-spin"></i>
             </button>
           ) : (
             <button {...buttonProps}>Register</button>

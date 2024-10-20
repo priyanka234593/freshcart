@@ -95,7 +95,7 @@ export default function ForgotPassword() {
 
         {isLoading ? (
           <button {...buttonProps} disabled>
-            Loading...
+            <i className="fa-solid fa-spinner animate-spin"></i>
           </button>
         ) : (
           <button {...buttonProps}>Reset Password</button>

@@ -97,7 +97,7 @@ export default function VerifyCode() {
 
         {isLoading ? (
           <button {...buttonProps} disabled>
-            Loading...
+            <i className="fa-solid fa-spinner animate-spin"></i>
           </button>
         ) : (
           <button {...buttonProps}>Submit</button>
