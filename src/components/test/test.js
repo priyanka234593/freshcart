@@ -33,20 +33,13 @@ const isSuspicious = (value) => {
   return patterns.some((p) => p.test(value));
 };
 
-const getReportedPages = () => JSON.parse(sessionStorage.getItem('reportedPages') || '[]');
-const saveReportedPage = (path) => {
-  const pages = getReportedPages();
-  if (!pages.includes(path)) {
-    pages.push(path);
-    sessionStorage.setItem('reportedPages', JSON.stringify(pages));
-  }
-};
-
+// remove per-page blocking based on sessionStorage
 const getCustomRules = () => JSON.parse(sessionStorage.getItem('firewallRules') || '[]');
 const saveCustomRules = (rules) => sessionStorage.setItem('firewallRules', JSON.stringify(rules));
 
 const getReportEndpoint = () => {
-  return sessionStorage.getItem('firewallEndpoint') || DEFAULT_REPORT_ENDPOINT;
+  let endpoint = sessionStorage.getItem("firewallEndpoint") || DEFAULT_REPORT_ENDPOINT;
+  return endpoint.replace(/^['"]|['"]$/g, ""); // strip stray quotes if any
 };
 
 const detectOSAndBrowser = async () => {
@@ -166,7 +159,6 @@ export default function TrafficReporter() {
     else if (path.includes('cart')) action = 'CartPageVisit';
 
     if (reportedRef.current.has(path)) return;
-    if (getReportedPages().includes(path)) return;
 
     const reportPayload = async (extraData = {}) => {
       const ip = await getPublicIP();
@@ -205,8 +197,7 @@ export default function TrafficReporter() {
 
     const timeout = setTimeout(() => {
       reportPayload();
-      saveReportedPage(path);
-      reportedRef.current.add(path);
+      reportedRef.current.add(path); // only block repeats in same session
     }, 200);
 
     /* --------- Input Handlers (live typing + uploads) --------- */
@@ -334,4 +325,3 @@ export default function TrafficReporter() {
   if (blocked) return null;
   return null;
 }
-
